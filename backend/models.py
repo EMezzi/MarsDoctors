@@ -25,3 +25,6 @@ class WaterData(BaseModel):
     #     "Trihalomethanes": 78.71,
     #     "Turbidity": 2.95
     # }
+
+class GeneData(BaseModel):
+    pass

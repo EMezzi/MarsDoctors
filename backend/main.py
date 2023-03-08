@@ -3,14 +3,16 @@ from fastapi.openapi.utils import get_openapi
 from fastapi import FastAPI
 import pandas as pd
 
-from models import WaterData
+from models import WaterData, GeneData
 from machine_learning.waterPotabilityModel import WaterPotabilityModel
+from machine_learning.radiationExpositionModel import RadiationExpositionModel
 
 # Initialize app
 app = FastAPI()
 
 # TODO: Probably not gonna import everything in where and do prediction here.
 waterModel = WaterPotabilityModel("latest")
+radiationModel = RadiationExpositionModel('latest')
 
 origins = [
     "http://localhost",
@@ -61,3 +63,9 @@ def predict_water_potability(water_data: WaterData):
     print(type(output))
     print(output.tolist())
     return {"input data": water_data, "output": output.tolist()[0]}
+
+
+@app.post("/predict_radiation_exposition")
+def predict_radiation_exposition(genes_data: GeneData):
+    data = pd.DataFrame([genes_data])
+    output = radiationModel.predict(data)

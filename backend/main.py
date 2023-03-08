@@ -69,3 +69,13 @@ def predict_water_potability(water_data: WaterData):
 def predict_radiation_exposition(genes_data: GeneData):
     data = pd.DataFrame([genes_data])
     output = radiationModel.predict(data)
+
+
+@app.post("/")
+def predict_sleep_stress():
+    pass
+
+
+@app.post("/")
+def predict_general_stress():
+    pass

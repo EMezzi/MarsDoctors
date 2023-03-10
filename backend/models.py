@@ -28,3 +28,9 @@ class WaterData(BaseModel):
 
 class GeneData(BaseModel):
     pass
+
+class HabitatData(BaseModel):
+    pass
+
+class SleepData(BaseModel):
+    pass

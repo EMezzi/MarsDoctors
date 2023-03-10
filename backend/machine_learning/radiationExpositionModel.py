@@ -17,11 +17,11 @@ class RadiationExpositionModel:
         else:
             raise Exception("No other models saved for this task!")
 
-        def predict(self, genes_data: pd.DataFrame):
-            return self.classifier.predict(genes_data)
+    def predict(self, genes_data: pd.DataFrame):
+        return self.classifier.predict(genes_data)
 
-        def get_accuracy_metrics(self):
-            pass
+    def get_accuracy_metrics(self):
+        pass
 
-        def get_genes_data(self):
-            pass
+    def get_genes_data(self):
+        pass

@@ -3,9 +3,12 @@ from fastapi.openapi.utils import get_openapi
 from fastapi import FastAPI
 import pandas as pd
 
-from models import WaterData, GeneData
+from models import WaterData, GeneData, SleepData, HabitatData
+
 from machine_learning.waterPotabilityModel import WaterPotabilityModel
 from machine_learning.radiationExpositionModel import RadiationExpositionModel
+from machine_learning.sleepStressModel import SleepStressModel
+from machine_learning.habitatModel import HabitatModel
 
 # Initialize app
 app = FastAPI()
@@ -13,6 +16,8 @@ app = FastAPI()
 # TODO: Probably not gonna import everything in where and do prediction here.
 waterModel = WaterPotabilityModel("latest")
 radiationModel = RadiationExpositionModel('latest')
+sleepModel = SleepStressModel('latest')
+habitatModel = HabitatModel('latest')
 
 origins = [
     "http://localhost",
@@ -70,12 +75,20 @@ def predict_radiation_exposition(genes_data: GeneData):
     data = pd.DataFrame([genes_data])
     output = radiationModel.predict(data)
 
-
-@app.post("/")
-def predict_sleep_stress():
-    pass
+    return {'input data': genes_data, 'output': output.tolist()[0]}
 
 
-@app.post("/")
-def predict_general_stress():
-    pass
+@app.post("/predict_sleep_stress")
+def predict_sleep_stress(sleep_data: SleepData):
+    data = pd.DataFrame([sleep_data])
+    output = sleepModel.predict(data)
+
+    return {'input data': sleep_data, 'output': output.tolist()[0]}
+
+
+@app.post("/predict_habitat")
+def predict_general_stress(habitat_data: HabitatData):
+    data = pd.DataFrame([habitat_data])
+    output = habitatModel.predict(data)
+
+    return {'input data': habitat_data, 'output': output.tolist()[0]}

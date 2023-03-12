@@ -19,8 +19,14 @@ class HabitatModel:
         else:
             raise Exception("No other models saved for this task!")
 
-    def predict(self, water_data: pd.DataFrame):
-        return self.classifier.predict(water_data)
+    def heuristic(self, habitat_data: pd.DataFrame):
+        if habitat_data['PM2.5'] > 0.25 and habitat_data['Rh'] > 0.45:
+            return True
+        else:
+            return False
+
+    def predict(self, habitat_data: pd.DataFrame):
+        return self.classifier.predict(habitat_data)
 
     def get_accuracy_metrics(self):
         pass

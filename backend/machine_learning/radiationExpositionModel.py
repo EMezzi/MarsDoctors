@@ -17,6 +17,9 @@ class RadiationExpositionModel:
         else:
             raise Exception("No other models saved for this task!")
 
+    def heuristic(self, genes_data: pd.DataFrame):
+        pass
+
     def predict(self, genes_data: pd.DataFrame):
         return self.classifier.predict(genes_data)
 

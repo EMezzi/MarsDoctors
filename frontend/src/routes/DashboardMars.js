@@ -46,7 +46,7 @@ class DashboardMars extends Component {
 
 // call the showNotification function after 10 seconds
         setTimeout(showNotification, 2000); // 2000 milliseconds = 2 seconds
-        setTimeout(showNotification2, 3000); // 3000 milliseconds = 3 seconds
+        setTimeout(showNotification2, 6000); // 3000 milliseconds = 3 seconds
     }
 
 
@@ -158,13 +158,19 @@ class DashboardMars extends Component {
                     </Col>
                 </Row>
 
-                <Row >
-                    <Col flex="auto">
+                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
+                    <Col className="dashboardCard" flex="auto">
                         <MarsLineChart/>
                     </Col>
 
                 </Row>
 
+                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
+                    <Col className="dashboardCard" flex="auto">
+                        <MarsLineChart/>
+                    </Col>
+
+                </Row>
 
 
             </Content>

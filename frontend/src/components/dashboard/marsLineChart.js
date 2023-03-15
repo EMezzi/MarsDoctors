@@ -352,11 +352,10 @@ let data = [
     }
 ]
 
-const probCardTitlePopup = "Density graph of expected probabilities on validation data"
+const probCardTitlePopup = "Hearth rate registry."
 
-const probCardContentPopup = "In the histogram below, we can see the distribution of the probabilities of a transaction " +
-    "being fraudulent based on the validation historical dataset. This graph can help you get an idea of what a good " +
-    "threshold would be when taking into account the total number of authorized/blocked transactions."
+const probCardContentPopup = "Your hearth circulation system has been within limits in the past 30 days. No abnormal " +
+    "values have been registered."
 
 class MarsLineChart extends React.Component {
 
@@ -418,7 +417,7 @@ class MarsLineChart extends React.Component {
 
         return(
 
-            <Card  className='featuresCard' hoverable title="Hearth data" bordered={false} extra={<PopoverHelp title={probCardTitlePopup} content={probCardContentPopup}/>}>
+            <Card  className='featuresCard' hoverable title="Health data" bordered={false} extra={<PopoverHelp title={probCardTitlePopup} content={probCardContentPopup}/>}>
 
                     <Line {...config} />
 

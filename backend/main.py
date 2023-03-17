@@ -5,19 +5,17 @@ import pandas as pd
 
 from models import WaterData, GeneData, SleepData, HabitatData
 
-from machine_learning.waterPotabilityModel import WaterPotabilityModel
-from machine_learning.radiationExpositionModel import RadiationExpositionModel
-from machine_learning.sleepStressModel import SleepStressModel
-from machine_learning.habitatModel import HabitatModel
+from machine_learning.model_classes.masterClass import MasterClass
 
 # Initialize app
 app = FastAPI()
 
 # TODO: Probably not gonna import everything in where and do prediction here.
-waterModel = WaterPotabilityModel("latest")
-radiationModel = RadiationExpositionModel('latest')
-sleepModel = SleepStressModel('latest')
-habitatModel = HabitatModel('latest')
+
+"""
+Instantiate the Master object class. 
+"""
+masterObject = MasterClass()
 
 origins = [
     "http://localhost",
@@ -64,7 +62,7 @@ def predict_water_potability(water_data: WaterData):
     data = pd.DataFrame([water_data.dict()])
     print(data)
 
-    output = waterModel.predict(data)
+    output = masterObject.water_decide(data)
     print(type(output))
     print(output.tolist())
     return {"input data": water_data, "output": output.tolist()[0]}
@@ -73,7 +71,7 @@ def predict_water_potability(water_data: WaterData):
 @app.post("/predict_radiation_exposition")
 def predict_radiation_exposition(genes_data: GeneData):
     data = pd.DataFrame([genes_data])
-    output = radiationModel.predict(data)
+    output = masterObject.radiation_decide(data)
 
     return {'input data': genes_data, 'output': output.tolist()[0]}
 
@@ -81,7 +79,7 @@ def predict_radiation_exposition(genes_data: GeneData):
 @app.post("/predict_sleep_stress")
 def predict_sleep_stress(sleep_data: SleepData):
     data = pd.DataFrame([sleep_data])
-    output = sleepModel.predict(data)
+    output = masterObject.sleep_decide(data)
 
     return {'input data': sleep_data, 'output': output.tolist()[0]}
 
@@ -89,6 +87,6 @@ def predict_sleep_stress(sleep_data: SleepData):
 @app.post("/predict_habitat")
 def predict_general_stress(habitat_data: HabitatData):
     data = pd.DataFrame([habitat_data])
-    output = habitatModel.predict(data)
+    output = masterObject.habitat_decide(data)
 
     return {'input data': habitat_data, 'output': output.tolist()[0]}

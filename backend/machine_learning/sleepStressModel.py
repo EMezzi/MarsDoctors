@@ -33,9 +33,9 @@ class SleepStressModel:
                 sleep_stress_data['limb movement'] > 17 and sleep_stress_data['rapid eye movement'] > 100 and \
                 (sleep_stress_data['respiration rate'] > 96 and sleep_stress_data['snoring rate'] > 96) and \
                 sleep_stress_data['temperature'] < 90:
-            return True
+            return 1
         else:
-            return False
+            return 0
 
     def __predict(self, sleep_stress_data: pd.DataFrame):
         """
@@ -45,15 +45,15 @@ class SleepStressModel:
         return self.classifier.predict(sleep_stress_data)
 
     def decide(self, sleep_stress_data: pd.DataFrame):
-        if self.__predict(sleep_stress_data) and self.__heuristic(sleep_stress_data):
-            return "You should pay a lot of attention"
-        elif self.__predict(sleep_stress_data) or self.__heuristic(sleep_stress_data):
-            return "You should sleep more, but no stress"
+        if self.__predict(sleep_stress_data)[0] == 1 and self.__heuristic(sleep_stress_data) == 1:
+            return 2
+        elif self.__predict(sleep_stress_data)[0] == 1 or self.__heuristic(sleep_stress_data) == 1:
+            return 1
         else:
-            return "You sleep so good"
+            return 0
 
     def get_accuracy_metrics(self):
         pass
 
-    def get_water_data(self, limit: int = 10, offset: int = 0):
+    def get_sleep_data(self, limit: int = 10, offset: int = 0):
         return self.dataset.iloc[::-1].iloc[offset:limit]

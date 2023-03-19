@@ -3,7 +3,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi import FastAPI
 import pandas as pd
 
-from models import WaterData, GeneData, SleepData, HabitatData
+from models import WaterData, GeneData, SleepData, HabitatData, HeartData
 
 from masterClass import MasterClass
 
@@ -70,7 +70,7 @@ def predict_water_potability(water_data: WaterData):
 
 @app.post("/predict_radiation_exposition")
 def predict_radiation_exposition(genes_data: GeneData):
-    data = pd.DataFrame([genes_data])
+    data = pd.DataFrame([genes_data.dict()])
     output = masterObject.radiation_decide(data)
 
     return {'input data': genes_data, 'output': output.tolist()[0]}
@@ -78,7 +78,7 @@ def predict_radiation_exposition(genes_data: GeneData):
 
 @app.post("/predict_sleep_stress")
 def predict_sleep_stress(sleep_data: SleepData):
-    data = pd.DataFrame([sleep_data])
+    data = pd.DataFrame([sleep_data.dict()])
     output = masterObject.sleep_decide(data)
 
     return {'input data': sleep_data, 'output': output.tolist()[0]}
@@ -86,7 +86,15 @@ def predict_sleep_stress(sleep_data: SleepData):
 
 @app.post("/predict_habitat")
 def predict_general_stress(habitat_data: HabitatData):
-    data = pd.DataFrame([habitat_data])
+    data = pd.DataFrame([habitat_data.dict()])
     output = masterObject.habitat_decide(data)
 
     return {'input data': habitat_data, 'output': output.tolist()[0]}
+
+
+@app.post("/predict_heart_problems")
+def predict_heart_stress(heart_data: HeartData):
+    data = pd.DataFrame([heart_data.dict()])
+    output = masterObject.heart_decide(data)
+
+    return {'input data': heart_data, 'output': output.tolist()[0]}

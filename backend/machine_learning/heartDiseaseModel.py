@@ -30,9 +30,9 @@ class HeartDisease:
         :return:
         """
         if heart_data['pain'] > 0:
-            return True
+            return 1
         else:
-            return False
+            return 0
 
     def __predict(self, heart_data: pd.DataFrame):
         """
@@ -43,7 +43,14 @@ class HeartDisease:
         return self.classifier.predict(heart_data)
 
     def decide(self, heart_data: pd.DataFrame):
-        if self.__heuristic(heart_data):
-            "CHECK ! CHECK !"
+        """
+        The method calls both the heuristic and the prediction method.
+        :param heart_data:
+        :return:
+        """
+        if self.__predict(heart_data)[0] == 1 and self.__heuristic(heart_data) == 1:
+            return 2
+        elif self.__predict(heart_data)[0] == 1 or self.__heuristic(heart_data) == 1:
+            return 1
         else:
-            "Usain Bolt Heart"
+            return 0

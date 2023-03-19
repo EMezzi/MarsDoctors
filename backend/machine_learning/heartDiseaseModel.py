@@ -15,7 +15,7 @@ class HeartDisease:
         if version == "latest":
             try:
                 # Load latest model and data
-                self.classifier = joblib.load('machine_learning/model_data/heart_disease.joblib')
+                self.classifier = joblib.load('machine_learning/model_data/heartdisup.joblib')
                 self.dataset = pd.read_csv("../datasets/health/heart.csv")
             except Exception as e:
                 print("Error when loading data and model: ", e)

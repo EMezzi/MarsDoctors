@@ -9,7 +9,6 @@ const columns = [
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
-        render: (text) => <a>{text}</a>,
     },
     {
         title: 'Date',
@@ -49,7 +48,6 @@ const columns = [
         key: 'action',
         render: (_, record) => (
             <Space size="middle">
-                <a>Open</a>
                 <a>Delete</a>
             </Space>
         ),
@@ -61,6 +59,7 @@ const data = [
         name: 'Health check',
         date: "10-01-2045",
         description: 'No action needed.',
+        explanation: 'Longer explanation Longer explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanation',
         tags: ['good'],
     },
     {
@@ -68,6 +67,7 @@ const data = [
         name: 'Habitat check',
         date: "11-01-2045",
         description: 'No action needed.',
+        explanation: 'Longer explanation',
         tags: ['good'],
     },
     {
@@ -75,6 +75,7 @@ const data = [
         name: 'Health check',
         date: "12-01-2045",
         description: 'Detected increasing stress level!',
+        explanation: 'Longer explanation',
         tags: ['warning'],
     },
 ];
@@ -86,18 +87,37 @@ class HistoryRoute extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            loading: true,
+        }
+
         console.log("Loaded")
 
     }
 
     componentDidMount() {
 
+        setTimeout(() => {
+            this.setState({ loading: false });
+        }, 500);
+
     }
 
     render() {
 
         return (
-            <Table columns={columns} dataSource={data} />
+            <Table loading={this.state.loading} columns={columns} expandable={{
+                expandedRowRender: (record) => (
+                    <p
+                        style={{
+                            margin: 0,
+                        }}
+                    >
+                        {record.explanation}
+                    </p>
+                ),
+                rowExpandable: (record) => record.explanation !== 'Not Expandable',
+            }} dataSource={data} />
 
         )
 

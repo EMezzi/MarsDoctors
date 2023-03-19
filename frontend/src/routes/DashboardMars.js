@@ -44,9 +44,9 @@ class DashboardMars extends Component {
             });
         };
 
-// call the showNotification function after 10 seconds
-        setTimeout(showNotification, 2000); // 2000 milliseconds = 2 seconds
-        setTimeout(showNotification2, 6000); // 3000 milliseconds = 3 seconds
+        // call the showNotification function after 10 seconds
+        //setTimeout(showNotification, 2000); // 2000 milliseconds = 2 seconds
+        //etTimeout(showNotification2, 6000); // 3000 milliseconds = 3 seconds
     }
 
 

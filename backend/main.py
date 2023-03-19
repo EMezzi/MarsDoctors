@@ -3,14 +3,19 @@ from fastapi.openapi.utils import get_openapi
 from fastapi import FastAPI
 import pandas as pd
 
-from models import WaterData
-from machine_learning.waterPotabilityModel import WaterPotabilityModel
+from models import WaterData, GeneData, SleepData, HabitatData
+
+from masterClass import MasterClass
 
 # Initialize app
 app = FastAPI()
 
 # TODO: Probably not gonna import everything in where and do prediction here.
-waterModel = WaterPotabilityModel("latest")
+
+"""
+Instantiate the Master object class. 
+"""
+masterObject = MasterClass()
 
 origins = [
     "http://localhost",
@@ -57,7 +62,31 @@ def predict_water_potability(water_data: WaterData):
     data = pd.DataFrame([water_data.dict()])
     print(data)
 
-    output = waterModel.predict(data)
+    output = masterObject.water_decide(data)
     print(type(output))
     print(output.tolist())
     return {"input data": water_data, "output": output.tolist()[0]}
+
+
+@app.post("/predict_radiation_exposition")
+def predict_radiation_exposition(genes_data: GeneData):
+    data = pd.DataFrame([genes_data])
+    output = masterObject.radiation_decide(data)
+
+    return {'input data': genes_data, 'output': output.tolist()[0]}
+
+
+@app.post("/predict_sleep_stress")
+def predict_sleep_stress(sleep_data: SleepData):
+    data = pd.DataFrame([sleep_data])
+    output = masterObject.sleep_decide(data)
+
+    return {'input data': sleep_data, 'output': output.tolist()[0]}
+
+
+@app.post("/predict_habitat")
+def predict_general_stress(habitat_data: HabitatData):
+    data = pd.DataFrame([habitat_data])
+    output = masterObject.habitat_decide(data)
+
+    return {'input data': habitat_data, 'output': output.tolist()[0]}

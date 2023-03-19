@@ -1,7 +1,8 @@
+"""
+This class manages predictions related to water potability.
+"""
+
 import joblib
-import json
-import numpy as np
-from sklearn import metrics
 import pandas as pd
 
 
@@ -22,8 +23,17 @@ class WaterPotabilityModel:
         else:
             raise Exception("No other models saved for this task!")
 
-    def predict(self, water_data: pd.DataFrame):
+    def __predict(self, water_data: pd.DataFrame):
+        """
+        :param water_data: water data, Chernobyl or Amsterdam ?
+        :return: prediction about the water
+        """
         return self.classifier.predict(water_data)
+
+    def decide(self, water_data: pd.DataFrame):
+        prediction = self.__predict(water_data)
+
+        return prediction
 
     def get_accuracy_metrics(self):
         pass

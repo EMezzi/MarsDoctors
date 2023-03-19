@@ -25,3 +25,12 @@ class WaterData(BaseModel):
     #     "Trihalomethanes": 78.71,
     #     "Turbidity": 2.95
     # }
+
+class GeneData(BaseModel):
+    pass
+
+class HabitatData(BaseModel):
+    pass
+
+class SleepData(BaseModel):
+    pass

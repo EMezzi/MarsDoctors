@@ -16,7 +16,7 @@ class WaterPotabilityModel:
         if version == "latest":
             try:
                 # Load latest model and data
-                self.classifier = joblib.load('machine_learning/model_data/water_potability_model.pkl')
+                self.classifier = joblib.load('../model_data/water_potability_model.pkl')
                 self.dataset = pd.read_csv("../datasets/habitat/water_potability.csv")
             except Exception as e:
                 print("Error when loading data and model: ", e)

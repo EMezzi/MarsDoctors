@@ -16,7 +16,7 @@ class SleepStressModel:
         if version == "latest":
             try:
                 # Load latest model and data
-                self.classifier = joblib.load('machine_learning/model_data/sleep_random_forest_model.joblib')
+                self.classifier = joblib.load('../model_data/sleep_random_forest_model.joblib')
                 self.dataset = pd.read_csv("../../../datasets/habitat/Sleep_Stress.csv")
             except Exception as e:
                 print("Error when loading data and model: ", e)

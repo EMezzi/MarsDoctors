@@ -16,7 +16,7 @@ class WaterPotabilityModel:
         if version == "latest":
             try:
                 # Load latest model and data
-                self.classifier = joblib.load('../model_data/water_potability_model.pkl')
+                self.classifier = joblib.load('machine_learning/model_data/water_potability_model.pkl')
                 self.dataset = pd.read_csv("../datasets/habitat/water_potability.csv")
             except Exception as e:
                 print("Error when loading data and model: ", e)
@@ -31,10 +31,9 @@ class WaterPotabilityModel:
         return self.classifier.predict(water_data)
 
     def decide(self, water_data: pd.DataFrame):
-        if self.__predict(water_data):
-            return "Pay attention, really"
-        else:
-            return "Water quality better than in the Netherlands"
+        prediction = self.__predict(water_data)
+
+        return prediction
 
     def get_accuracy_metrics(self):
         pass

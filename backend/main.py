@@ -5,7 +5,7 @@ import pandas as pd
 
 from models import WaterData, GeneData, SleepData, HabitatData
 
-from machine_learning.model_classes.masterClass import MasterClass
+from masterClass import MasterClass
 
 # Initialize app
 app = FastAPI()

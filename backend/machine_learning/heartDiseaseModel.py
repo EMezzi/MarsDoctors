@@ -5,7 +5,7 @@ Class which manages predictions related to the heart.
 import joblib
 import pandas as pd
 
-variable = joblib.load('../model_data/heart_disease.joblib')
+# variable = joblib.load('model_data/heart_disease.joblib')
 
 
 class HeartDisease:
@@ -15,8 +15,8 @@ class HeartDisease:
         if version == "latest":
             try:
                 # Load latest model and data
-                self.classifier = joblib.load('../model_data/heart_disease.joblib')
-                self.dataset = pd.read_csv("../../../datasets/health/heart.csv")
+                self.classifier = joblib.load('machine_learning/model_data/heart_disease.joblib')
+                self.dataset = pd.read_csv("../datasets/health/heart.csv")
             except Exception as e:
                 print("Error when loading data and model: ", e)
         else:

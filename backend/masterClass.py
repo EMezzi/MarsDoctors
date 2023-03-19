@@ -1,10 +1,10 @@
 import pandas as pd
 
-from habitatModel import HabitatModel
-from heartDiseaseModel import HeartDisease
-from radiationExpositionModel import RadiationExpositionModel
-from sleepStressModel import SleepStressModel
-from waterPotabilityModel import WaterPotabilityModel
+from machine_learning.habitatModel import HabitatModel
+from machine_learning.heartDiseaseModel import HeartDisease
+from machine_learning.radiationExpositionModel import RadiationExpositionModel
+from machine_learning.sleepStressModel import SleepStressModel
+from machine_learning.waterPotabilityModel import WaterPotabilityModel
 
 
 class MasterClass:

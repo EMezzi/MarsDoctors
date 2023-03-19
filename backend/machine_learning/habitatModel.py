@@ -16,8 +16,8 @@ class HabitatModel:
         if version == "latest":
             try:
                 # Load latest model and data
-                self.classifier = joblib.load('../model_data/habitat_random_forest_model.joblib')
-                self.dataset = pd.read_csv("../../../datasets/habitat/Habitat_Stress.csv")
+                self.classifier = joblib.load('machine_learning/model_data/habitat_random_forest_model.joblib')
+                self.dataset = pd.read_csv("../datasets/habitat/Habitat_Stress.csv")
             except Exception as e:
                 print("Error when loading data and model: ", e)
         else:

@@ -28,6 +28,24 @@ for rad in radiation_codes:
         aggregation_data_frame['SAMPLES_' + rad + 'Gy_' + hour] = \
             gene_expression.loc[:, [sample for sample in samples if re.search(path, sample)]].mean(axis=1)
 
+print(aggregation_data_frame.columns)
+print(aggregation_data_frame)
+
+idx = pd.IndexSlice
+print("Base levels")
+
+aggregation_data_frame["average_0"] = aggregation_data_frame.loc[
+    idx["11757650_s_at", "11746506_a_at", "11727942_a_at", "11739534_a_at",
+        "11749460_x_at", "11754604_x_at", "11745837_x_at", "11739536_x_at",
+        "11737944_x_at", "11755730_x_at", "11724463_a_at", "11756809_a_at",
+        "11730501_a_at"],
+    ["SAMPLES_0.00Gy_1h", "SAMPLES_0.00Gy_2h", "SAMPLES_0.00Gy_6h"]].mean(axis=1)
+
+print(aggregation_data_frame.loc[idx["11757650_s_at", "11746506_a_at", "11727942_a_at", "11739534_a_at",
+                                     "11749460_x_at", "11754604_x_at", "11745837_x_at", "11739536_x_at",
+                                     "11737944_x_at", "11755730_x_at", "11724463_a_at", "11756809_a_at",
+                                     "11730501_a_at"],
+                                 ["average_0"]])
 
 # Dataframe which will contain the rates of change of the genes expressions
 rate_data_frame = pd.DataFrame({'ID_REF': aggregation_data_frame.index}).set_index('ID_REF')
@@ -39,7 +57,6 @@ for rad in radiation_codes:
     rate_data_frame['SAMPLE_Rate_' + rad + 'Gy'] = \
         aggregation_data_frame['SAMPLES_' + rad + 'Gy_6h'] / aggregation_data_frame['SAMPLES_' + rad + 'Gy_1h']
 
-
 """
 Here we create a dataframe that for each level of radiation, will take the first 50 rates of growth and the first 50 
 decrease. Everything will be store in a dictionary of dictionaries, where the main keys will be the Radiation level,
@@ -47,6 +64,7 @@ and then for each radiation level there will be a dictionary with two keys, the 
 last key for the last 50 gene expressions. 
 """
 
+"""
 first_and_last = {}
 
 for i, column in enumerate(rate_data_frame.columns):
@@ -57,3 +75,4 @@ for i, column in enumerate(rate_data_frame.columns):
 
 with open('../files/binary_files/first_and_last.pk', 'wb') as f:
     pk.dump(first_and_last, f)
+"""

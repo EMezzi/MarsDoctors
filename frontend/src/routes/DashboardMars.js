@@ -75,7 +75,7 @@ class DashboardMars extends Component {
 
                                     <div className="smallCardContent">
                                     <span>
-                                        Today
+                                        21 Hours Ago
                                     </span>
                                     </div>
                                 </div>

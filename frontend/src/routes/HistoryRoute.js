@@ -56,7 +56,7 @@ const columns = [
 const data = [
     {
         key: '1',
-        name: 'Health check',
+        name: 'Health check ❤',
         date: "10-01-2045",
         description: 'No action needed.',
         explanation: 'Longer explanation Longer explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanation',
@@ -64,7 +64,7 @@ const data = [
     },
     {
         key: '2',
-        name: 'Habitat check',
+        name: 'Habitat check 🏠',
         date: "11-01-2045",
         description: 'No action needed.',
         explanation: 'Longer explanation',
@@ -72,7 +72,7 @@ const data = [
     },
     {
         key: '3',
-        name: 'Health check',
+        name: 'Health check ❤',
         date: "12-01-2045",
         description: 'Detected increasing stress level!',
         explanation: 'Longer explanation',

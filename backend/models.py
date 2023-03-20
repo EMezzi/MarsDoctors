@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-
+from typing import List
+from typing import Any
 
 class WaterData(BaseModel):
     # Returns negative
@@ -105,3 +106,13 @@ class HeartData(BaseModel):
     slope: int = 0
     num_major_vessels: int = 0
     thal: int = 1
+
+
+class Notification(BaseModel):
+    key: int
+    name: str
+    date: str
+    description: str
+    explanation: str
+    tags: List[str]
+

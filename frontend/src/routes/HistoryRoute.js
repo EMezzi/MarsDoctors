@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Skeleton} from "antd";
+import {Button} from "antd";
 
 import { Space, Table, Tag } from 'antd';
+import {SyncOutlined} from "@ant-design/icons";
 
 const columns = [
     {
@@ -50,36 +51,12 @@ const columns = [
             <Space size="middle">
                 <a>Delete</a>
             </Space>
-        ),
-    },
-];
-const data = [
-    {
-        key: '1',
-        name: 'Health check ❤',
-        date: "10-01-2045",
-        description: 'No action needed.',
-        explanation: 'Longer explanation Longer explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanationLonger explanation',
-        tags: ['good'],
-    },
-    {
-        key: '2',
-        name: 'Habitat check 🏠',
-        date: "11-01-2045",
-        description: 'No action needed.',
-        explanation: 'Longer explanation',
-        tags: ['good'],
-    },
-    {
-        key: '3',
-        name: 'Health check ❤',
-        date: "12-01-2045",
-        description: 'Detected increasing stress level!',
-        explanation: 'Longer explanation',
-        tags: ['warning'],
-    },
-];
 
+        ),
+
+    },
+
+];
 
 class HistoryRoute extends Component {
 
@@ -89,35 +66,69 @@ class HistoryRoute extends Component {
 
         this.state = {
             loading: true,
+            data: []
         }
 
         console.log("Loaded")
 
     }
 
+    /**
+     * Get notifications
+     */
+    async getNotifications() {
+
+        const backEndUrl_threshold = 'http://127.0.0.1:8000/notifications/'
+        const getBackendData = async () => {
+            try {
+                const data_notifications = await axios.get(backEndUrl_threshold);
+                this.setState({data: data_notifications.data})
+            } catch (err) {
+                // Handle Error Here
+                console.error(err);
+            } finally {
+                console.log("Done loading notifications")
+                this.setState({loading: false})
+            }
+        };
+
+        getBackendData()
+    }
+
     componentDidMount() {
 
-        setTimeout(() => {
-            this.setState({ loading: false });
-        }, 500);
+        // setTimeout(() => {
+        //     this.setState({ loading: false });
+        // }, 500);
+        this.getNotifications()
 
     }
 
     render() {
 
         return (
-            <Table loading={this.state.loading} columns={columns} expandable={{
-                expandedRowRender: (record) => (
-                    <p
-                        style={{
-                            margin: 0,
-                        }}
-                    >
-                        {record.explanation}
-                    </p>
-                ),
-                rowExpandable: (record) => record.explanation !== 'Not Expandable',
-            }} dataSource={data} />
+            <div>
+                <Button className="refreshButton" shape="round" type="primary" icon={<SyncOutlined />} onClick={async () => {
+                    this.setState({loading: true});
+                    await new Promise(r => setTimeout(r, 200));
+                    this.getNotifications()
+                }}>
+
+                </Button>
+                <Table loading={this.state.loading} columns={columns} expandable={{
+                    expandedRowRender: (record) => (
+                        <p
+                            style={{
+                                margin: 0,
+                            }}
+                        >
+                            {record.explanation}
+                        </p>
+                    ),
+                    rowExpandable: (record) => record.explanation !== 'Not Expandable',
+                }} dataSource={this.state.data} />
+            </div>
+
 
         )
 

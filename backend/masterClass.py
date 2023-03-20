@@ -6,6 +6,7 @@ from machine_learning.radiationExpositionModel import RadiationExpositionModel
 from machine_learning.sleepStressModel import SleepStressModel
 from machine_learning.waterPotabilityModel import WaterPotabilityModel
 
+from models import Notification
 
 class MasterClass:
 
@@ -14,6 +15,7 @@ class MasterClass:
     radiation = None
     sleep = None
     water = None
+    notifications = []
 
     def __init__(self):
         self.habitat = HabitatModel()
@@ -21,6 +23,16 @@ class MasterClass:
         self.radiation = RadiationExpositionModel()
         self.sleep = SleepStressModel()
         self.water = WaterPotabilityModel()
+        notification1 = Notification(key=1, name="Health check ❤", date="10-01-2045", description="No action needed.",
+                                     explanation="Longer explanation Longer explanationLonger", tags=['good'])
+        notification2 = Notification(key=2, name="Habitat check 🏠", date="11-01-2045", description="No action needed.",
+                                     explanation="", tags=["good"])
+        notification3 = Notification(key=3, name="Health check ❤", date="12-01-2045", description="No action needed.",
+                                     explanation="Detected increasing stress level!", tags=['warning'])
+        self.notifications.append(notification1)
+        self.notifications.append(notification2)
+        self.notifications.append(notification3)
+
 
     def habitat_decide(self, habitat_data: pd.DataFrame):
         return self.habitat.decide(habitat_data)

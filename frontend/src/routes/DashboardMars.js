@@ -1,11 +1,9 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import axios from "axios";
 import "../css/App.css"
-import {Button, Card, Col, InputNumber, Row, Skeleton, Slider,notification} from "antd";
+import {Card, Col, Row,notification} from "antd";
 import {Content} from "antd/es/layout/layout";
 import {CloudFilled, DashboardOutlined, DislikeOutlined, LikeOutlined} from "@ant-design/icons";
-
-import { SmileOutlined } from '@ant-design/icons';
 import MarsLineChart from "../components/dashboard/marsLineChart";
 
 
@@ -165,12 +163,12 @@ class DashboardMars extends Component {
 
                 </Row>
 
-                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
-                    <Col className="dashboardCard" flex="auto">
-                        <MarsLineChart/>
-                    </Col>
+                {/*<Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>*/}
+                {/*    <Col className="dashboardCard" flex="auto">*/}
+                {/*        <MarsLineChart/>*/}
+                {/*    </Col>*/}
 
-                </Row>
+                {/*</Row>*/}
 
 
             </Content>

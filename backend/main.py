@@ -100,3 +100,9 @@ def predict_heart_stress(heart_data: HeartData):
     output = masterObject.heart_decide(data)
 
     return {'input data': heart_data, 'output': output}
+
+
+@app.get("/notifications")
+def predict_heart_stress():
+
+    return masterObject.notifications

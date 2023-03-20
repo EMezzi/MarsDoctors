@@ -104,3 +104,8 @@
   color: red;
 
 }
+
+.refreshButton {
+  margin-bottom: 8px;
+  float: right;
+}

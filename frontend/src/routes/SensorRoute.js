@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Button, Skeleton} from "antd";
+import {Button} from "antd";
 
-import { Space, Table, Tag } from 'antd';
-import {SearchOutlined, SendOutlined} from "@ant-design/icons";
+import {Table} from 'antd';
+import {SendOutlined} from "@ant-design/icons";
 
 const columns = [
     {
@@ -41,7 +41,7 @@ class SensorRoute extends Component {
         super(props);
 
         this.state = {
-            loading: true,
+            loading: false,
         }
 
         console.log("Loaded")
@@ -50,27 +50,16 @@ class SensorRoute extends Component {
 
     componentDidMount() {
 
-        setTimeout(() => {
-            this.setState({ loading: false });
-        }, 500);
+        // setTimeout(() => {
+        //     this.setState({ loading: false });
+        // }, 500);
 
     }
 
     render() {
 
         return (
-            <Table loading={this.state.loading} columns={columns} expandable={{
-                expandedRowRender: (record) => (
-                    <p
-                        style={{
-                            margin: 0,
-                        }}
-                    >
-                        {record.explanation}
-                    </p>
-                ),
-                rowExpandable: (record) => record.explanation !== 'Not Expandable',
-            }} dataSource={data} />
+            <Table loading={this.state.loading} columns={columns} dataSource={data} />
 
         )
 

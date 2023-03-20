@@ -5,10 +5,10 @@ import {BrowserRouter, Route, Switch, Redirect,} from "react-router-dom"
 import {FloatButton, Layout} from 'antd';
 import HeaderDashboard from "./components/headers/HeaderDashboard";
 import HeaderPredict from "./components/headers/HeaderPredict";
-import PredictTransactionRoute from "./routes/PredictTransactionRoute";
-import DashboardRoute from "./routes/DashboardRoute";
 import HistoryRoute from "./routes/HistoryRoute";
 import DashboardMars from "./routes/DashboardMars";
+import SensorRoute from "./routes/SensorRoute";
+import HeaderSensor from "./components/headers/HeaderSensor";
 
 /**
  * @author Matei
@@ -42,6 +42,7 @@ class App extends React.Component {
               <Switch>
                 <Route path="/dashboard" component={HeaderDashboard}/>
                 <Route path="/history" component={HeaderPredict}/>
+                <Route path="/sensor" component={HeaderSensor}/>
                 <Redirect to="/dashboard"/>
               </Switch>
 
@@ -50,6 +51,7 @@ class App extends React.Component {
                 <Switch>
                   <Route path="/dashboard" component={DashboardMars}/>
                   <Route path="/history" component={HistoryRoute}/>
+                  <Route path="/sensor" component={SensorRoute}/>
                   <Redirect to="/dashboard"/>
                 </Switch>
               </Content>

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from "../../resources/logo.png";
 import {Layout, Menu} from "antd";
-import {CreditCardOutlined, DashboardOutlined, SafetyOutlined} from "@ant-design/icons";
+import {CreditCardOutlined, DashboardOutlined, WifiOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import {withRouter} from "react-router";
 import '../../css/App.css';
@@ -66,6 +66,10 @@ class SiderMenu extends React.Component {
                     <Menu.Item key="/history" icon={<CreditCardOutlined /> }>
                         <Link to="/history"/>
                         Notifications
+                    </Menu.Item>
+                    <Menu.Item key="/sensor" icon={<WifiOutlined />}>
+                        <Link to="/sensor"/>
+                        Sensor Test
                     </Menu.Item>
 
                 </Menu>

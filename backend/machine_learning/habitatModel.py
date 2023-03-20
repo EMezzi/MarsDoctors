@@ -31,9 +31,9 @@ class HabitatModel:
         :return: True or False
         """
         if habitat_data['PM2.5'] > 0.25 and habitat_data['Rh'] > 0.45:
-            return True
+            return 1
         else:
-            return False
+            return 0
 
     def __predict(self, habitat_data: pd.DataFrame):
         """
@@ -49,17 +49,15 @@ class HabitatModel:
         :param habitat_data:
         :return:
         """
-        if self.__heuristic(habitat_data) and self.__predict(habitat_data):
-            return "You are about to die"
-
-        elif self.__heuristic(habitat_data) or self.__predict(habitat_data):
-            return "This habitat is stressing you. Normal, it's not earth"
-
+        if self.__predict(habitat_data)[0] == 1 and self.__heuristic(habitat_data) == 1:
+            return 2
+        elif self.__predict(habitat_data)[0] == 1 or self.__heuristic(habitat_data) == 1:
+            return 1
         else:
-            return "You are not stressed"
+            return 0
 
     def get_accuracy_metrics(self):
         pass
 
-    def get_water_data(self, limit: int = 10, offset: int = 0):
+    def get_habitat_data(self, limit: int = 10, offset: int = 0):
         return self.dataset.iloc[::-1].iloc[offset:limit]

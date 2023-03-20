@@ -28,6 +28,7 @@ class WaterData(BaseModel):
 
 
 class GeneData(BaseModel):
+    # Returns positive
     s_at_11757650 = 5.376935,
     s_at_11746506 = 8.215063,
     a_at_11727942 = 6.360752,
@@ -40,7 +41,7 @@ class GeneData(BaseModel):
     x_at_11755730 = 7.782462,
     a_at_11724463 = 4.551536,
 
-    a_at_11756809 = 0,
+    a_at_11756809 = 6.141027,
     a_at_11730501 = 6.357842,
 
 

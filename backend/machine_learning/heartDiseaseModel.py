@@ -5,8 +5,6 @@ Class which manages predictions related to the heart.
 import joblib
 import pandas as pd
 
-# variable = joblib.load('model_data/heart_disease.joblib')
-
 
 class HeartDisease:
 
@@ -29,8 +27,7 @@ class HeartDisease:
         :param heart_data:
         :return:
         """
-        print(heart_data['chest_pain_type'].iloc[0])
-        if heart_data['chest_pain_type'].iloc[0] > 0:
+        if heart_data["chest_pain_type"].loc[0] > 0:
             return 1
         else:
             return 0
@@ -49,7 +46,6 @@ class HeartDisease:
         :param heart_data:
         :return:
         """
-        print(self.__predict(heart_data))
         if self.__predict(heart_data)[0] == 1 and self.__heuristic(heart_data) == 1:
             return 2
         elif self.__predict(heart_data)[0] == 1 or self.__heuristic(heart_data) == 1:

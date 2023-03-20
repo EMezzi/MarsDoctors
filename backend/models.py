@@ -29,19 +29,19 @@ class WaterData(BaseModel):
 
 class GeneData(BaseModel):
     # Returns positive
-    s_at_11757650 = 5.376935
-    s_at_11746506 = 8.215063
-    a_at_11727942 = 6.360752
-    a_at_11739534 = 5.635366
-    x_at_11749460 = 5.273240
-    x_at_11754604 = 7.672275
-    x_at_11745837 = 5.308073
-    x_at_11739536 = 5.810706
-    x_at_11737944 = 7.846322
-    x_at_11755730 = 7.782462
-    a_at_11724463 = 4.551536
-    a_at_11756809 = 6.141027
-    a_at_11730501 = 6.357842
+    s_at_11757650: float = 5.376935
+    s_at_11746506: float = 8.215063
+    a_at_11727942: float = 6.360752
+    a_at_11739534: float = 5.635366
+    x_at_11749460: float = 5.273240
+    x_at_11754604: float = 7.672275
+    x_at_11745837: float = 5.308073
+    x_at_11739536: float = 5.810706
+    x_at_11737944: float = 7.846322
+    x_at_11755730: float = 7.782462
+    a_at_11724463: float = 4.551536
+    a_at_11756809: float = 6.141027
+    a_at_11730501: float = 6.357842
 
 
 class HabitatData(BaseModel):
@@ -50,19 +50,24 @@ class HabitatData(BaseModel):
     Post: int = 3
     SBP: int = 99
     DBP: int = 68
-    STAI: int = 1.833
+    STAI: float = 1.833
     PM2_5: int = 0
-    Temp: int = 20.4
-    Rh: int = 33.1
+    Temp: float = 20.4
+    Rh: float = 33.1
     CO2: int = 643
     Age: int = 27
     Sex: str = "Female"
-    ethnic: str = "Asian"
     Healthcondition: str = "Very good"
     Medicine: str = "No"
     Sleep: str = "No"
     Caffinebeverage: str = "No"
     Stresslevel: int = 4
+    ethnic_Asian: int = 1
+    ethnic_Black: int = 0
+    ethnic_Latino: int = 0
+    ethnic_Multiracial: int = 0
+    ethnic_No: int = 0
+    ethnic_Caucasian: int = 0
     Stress_or_not_after_test: str = "Yes"
     Which_part_first: int = 1
     Which_part_stress_most: int = 1
@@ -75,29 +80,28 @@ class HabitatData(BaseModel):
 
 
 class SleepData(BaseModel):
-    sr = 77.6
-    rr = 21.76
-    t = 93.76
-    lm = 11.76
-    bo = 91.76
-    rem = 93.8
-    sr = 4.64
-    hr = 64.4
-    sl = 2
+    sr: int = 77.6
+    rr: float = 21.76
+    t: float = 93.76
+    lm: float = 11.76
+    bo: float = 91.76
+    rem: float = 93.3
+    sr1: float = 4.64
+    hr: float = 64.4
 
 
 class HeartData(BaseModel):
     # Returns positive
-    age = 63
-    sex = 1
-    chest_pain_type = 3
-    resting_bp = 145
-    cholestoral = 233
-    fasting_blood_sugar = 1
-    restecg = 0
-    max_hr = 150
-    exang = 0
-    oldpeak = 2.3
-    slope = 0
-    num_major_vessels = 0
-    thal = 1
+    age: int = 63
+    sex: int = 1
+    chest_pain_type: int = 3
+    resting_bp: int = 145
+    cholestoral: int = 233
+    fasting_blood_sugar: int = 1
+    restecg: int = 0
+    max_hr: int = 150
+    exang: int = 0
+    oldpeak: int = 2.3
+    slope: int = 0
+    num_major_vessels: int = 0
+    thal: int = 1

@@ -73,7 +73,7 @@ def predict_radiation_exposition(genes_data: GeneData):
     data = pd.DataFrame([genes_data.dict()])
     output = masterObject.radiation_decide(data)
 
-    return {'input data': genes_data, 'output': output.tolist()[0]}
+    return {'input data': genes_data, 'output': output}
 
 
 @app.post("/predict_sleep_stress")
@@ -89,7 +89,9 @@ def predict_general_stress(habitat_data: HabitatData):
     data = pd.DataFrame([habitat_data.dict()])
     output = masterObject.habitat_decide(data)
 
-    return {'input data': habitat_data, 'output': output.tolist()[0]}
+    print("Questo è il risultato: ", output)
+
+    return {'input data': habitat_data, 'output': output}
 
 
 @app.post("/predict_heart_problems")

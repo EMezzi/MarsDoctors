@@ -40,6 +40,8 @@ class HabitatModel:
         :param habitat_data: data from the habitat
         :return: prediction, stressed or not
         """
+        print(habitat_data)
+        print(self.classifier.predict(habitat_data))
         return self.classifier.predict(habitat_data)
 
     def decide(self, habitat_data: pd.DataFrame):

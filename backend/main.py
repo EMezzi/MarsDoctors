@@ -97,4 +97,4 @@ def predict_heart_stress(heart_data: HeartData):
     data = pd.DataFrame([heart_data.dict()])
     output = masterObject.heart_decide(data)
 
-    return {'input data': heart_data, 'output': output.tolist()[0]}
+    return {'input data': heart_data, 'output': output}

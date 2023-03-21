@@ -65,12 +65,14 @@ class HabitatModel:
         """
 
         print("Risultato di questo: ", self.__predict(habitat_data)[0])
-        if self.__predict(habitat_data)[0] == 1 and self.__heuristic(habitat_data) == 1:
-            return 2
-        elif self.__predict(habitat_data)[0] == 1 or self.__heuristic(habitat_data) == 1:
-            return 1
+        if (self.__predict(habitat_data)[0] == 1 or self.__predict(habitat_data)[0] == 2 or
+            self.__predict(habitat_data)[0] == 3) and self.__heuristic(habitat_data) == 1:
+            return [2, "Hard stress provoked by the habitat"]
+        elif (self.__predict(habitat_data)[0] == 1 or self.__predict(habitat_data)[0] == 2 or
+              self.__predict(habitat_data)[0] == 3) or self.__heuristic(habitat_data) == 1:
+            return [1, "Mild stress, pay attention"]
         else:
-            return 0
+            return [0, "You are not stressed"]
 
     def get_accuracy_metrics(self):
         pass

@@ -23,18 +23,6 @@ class SleepStressModel:
         else:
             raise Exception("No other models saved for this task!")
 
-    """
-    @staticmethod
-    def __heuristic(sleep_stress_data: pd.DataFrame):
-        if sleep_stress_data['blood_oxygen'] < 88 and sleep_stress_data['heart_rate'] > 75 and \
-                sleep_stress_data['limb movement'] > 17 and sleep_stress_data['rapid eye movement'] > 100 and \
-                (sleep_stress_data['respiration rate'] > 96 and sleep_stress_data['snoring rate'] > 96) and \
-                sleep_stress_data['temperature'] < 90:
-            return 1
-        else:
-            return 0
-    """
-
     def __predict(self, sleep_stress_data: pd.DataFrame):
         """
         :param sleep_stress_data: data from the sleep

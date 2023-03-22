@@ -46,9 +46,13 @@ class HeartDisease:
         :param heart_data:
         :return:
         """
-        if self.__predict(heart_data)[0] == 1 and self.__heuristic(heart_data) == 1:
+
+        prediction = self.__predict(heart_data)[0]
+        heuristic = self.__heuristic(heart_data)
+
+        if prediction == 1 and heuristic == 1:
             return [2, "Your heart is in danger"]
-        elif self.__predict(heart_data)[0] == 1 or self.__heuristic(heart_data) == 1:
+        elif prediction == 1 or heuristic == 1:
             return [1, "Your heart might be in danger"]
         else:
             return [0, "Your heart is in good shape"]

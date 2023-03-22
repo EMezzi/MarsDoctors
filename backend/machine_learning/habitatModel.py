@@ -52,8 +52,6 @@ class HabitatModel:
         habitat_data = habitat_data.drop(columns=["Stresslevel"])
         habitat_data = habitat_data.drop(columns=habitat_data.columns[19:].values)
 
-        print(habitat_data.columns)
-
         return self.classifier.predict(habitat_data)
 
     def decide(self, habitat_data: pd.DataFrame):
@@ -64,12 +62,12 @@ class HabitatModel:
         :return:
         """
 
-        print("Risultato di questo: ", self.__predict(habitat_data)[0])
-        if (self.__predict(habitat_data)[0] == 1 or self.__predict(habitat_data)[0] == 2 or
-            self.__predict(habitat_data)[0] == 3) and self.__heuristic(habitat_data) == 1:
+        prediction = self.__predict(habitat_data)[0]
+        heuristic = self.__heuristic(habitat_data)
+
+        if (prediction == 1 or prediction == 2 or prediction == 3) and heuristic == 1:
             return [2, "Hard stress provoked by the habitat"]
-        elif (self.__predict(habitat_data)[0] == 1 or self.__predict(habitat_data)[0] == 2 or
-              self.__predict(habitat_data)[0] == 3) or self.__heuristic(habitat_data) == 1:
+        elif (prediction == 1 or prediction == 2 or prediction == 3) or heuristic == 1:
             return [1, "Mild stress, pay attention"]
         else:
             return [0, "You are not stressed"]

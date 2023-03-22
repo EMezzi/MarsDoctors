@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from typing import Any
 
+
 class WaterData(BaseModel):
     # Returns negative
     ph: float = 0.7
@@ -115,4 +116,3 @@ class Notification(BaseModel):
     description: str
     explanation: str
     tags: List[str]
-

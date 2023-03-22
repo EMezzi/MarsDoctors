@@ -47,9 +47,9 @@ class RadiationExpositionModel:
                 abs(genes_data["a_at_11756809"].iloc[0] - a_at_11756809) > (a_at_11756809 / 100) or \
                 genes_data["a_at_11730501"].iloc[0] - a_at_11730501 < 0 and \
                 abs(genes_data["a_at_11730501"].iloc[0] - a_at_11730501) > (a_at_11730501 / 100):
-            return [1, "you have been exposed to radiation"]
+            return [1, "You have been exposed to ionizing radiation"]
         else:
-            return [0, "you haven't been exposed"]
+            return [0, "You have not been exposed to ionizing radiation"]
 
     def decide(self, genes_data: pd.DataFrame):
         return self.__heuristic(genes_data)

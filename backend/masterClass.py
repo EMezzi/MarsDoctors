@@ -38,23 +38,26 @@ class MasterClass:
         self.notifications.append(notification3)
 
     def habitat_decide(self, habitat_data: pd.DataFrame):
-        stress_level, message = self.habitat.decide(habitat_data)
+        stress_level, description = self.habitat.decide(habitat_data)
 
-        description = None
+        explanation = None
         tag = None
 
         if stress_level == 0:
             tag = 'good'
-            description = 'no action needed'
+            explanation = 'The stress level is absolutely normal. The system is affirming that Mars'' habitat is not ' \
+                          'affecting your stress level'
         elif stress_level == 1:
             tag = 'warning'
-            description = 'you could try to visit a doctor'
+            explanation = 'Mars habitat might be responsible for your raised stress level. You should visit a doctor ' \
+                          'or a psychologist. For now no need to stop the mission.'
         elif stress_level == 2:
             tag = 'hard warning'
-            description = 'there has to be a problem with environmental machines'
+            explanation = 'The system has noticed that your stress level is very high, due to the new planet' \
+                          'environment. You have to check yourself, you are not in condition to work.'
 
         notification = Notification(key=1, name="Habitat Check", date=date.today().strftime("%d/%m/%Y"),
-                                    description=description, explanation=message, tags=[tag])
+                                    description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["habitat"]["stress"] = True
         self.notifications.append(notification)
@@ -62,23 +65,25 @@ class MasterClass:
         return stress_level  # self.habitat.decide(habitat_data)
 
     def heart_decide(self, heart_data: pd.DataFrame):
-        heart_level, message = self.heart.decide(heart_data)
+        heart_level, description = self.heart.decide(heart_data)
 
-        description = None
+        explanation = None
         tag = None
 
         if heart_level == 0:
             tag = 'good'
-            description = 'no action needed'
+            explanation = 'The system has not found any evidence of a possible heart attack. You are in good shape.'
         elif heart_level == 1:
             tag = 'warning'
-            description = 'you might risk an heart attack'
+            explanation = 'The system has found mild evidence of a possible heart problem. ' \
+                          'Go to your Mars cardiologist to have your heart checked'
         elif heart_level == 2:
             tag = 'hard warning'
-            description = 'you have to visit a doctor now'
+            explanation = 'You are about to have an heart attack. The doctors will come as soon as possible. Stay ' \
+                          'calm and breath deeply, otherwise you''ll only worsen the situation'
 
         notification = Notification(key=1, name="Heart Check", date=date.today().strftime("%d/%m/%Y"),
-                                    description=description, explanation=message, tags=[tag])
+                                    description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["heart"] = True
         self.notifications.append(notification)
@@ -87,20 +92,22 @@ class MasterClass:
 
     def radiation_decide(self, radiation_data: pd.DataFrame):
 
-        radiation_level, message = self.radiation.decide(radiation_data)
+        radiation_level, description = self.radiation.decide(radiation_data)
 
-        description = None
+        explanation = None
         tag = None
 
         if radiation_level == 0:
             tag = 'good'
-            description = 'no action needed'
+            explanation = 'Your genes do not show any change in their transcription level. This means that you have ' \
+                          'not been exposed to ionizing radiation'
         elif radiation_level == 1:
-            tag = 'warning'
-            description = 'you have to visit a biologist immediately'
+            tag = 'hard warning'
+            explanation = 'Your genes show a change in their transcription level which is above 1%. You have to ' \
+                          'immediately visit a biotechnologist to act with CRISPR'
 
         notification = Notification(key=1, name="Radiations Check", date=date.today().strftime("%d/%m/%Y"),
-                                    description=description, explanation=message, tags=[tag])
+                                    description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["radiation"] = True
         self.notifications.append(notification)
@@ -114,29 +121,33 @@ class MasterClass:
 
         description = None
         tag = None
-        message = None
+        explanation = None
 
         print("Level of the sleep: ", sleep_level)
 
         if sleep_level == 0:
             tag = 'good'
-            description = 'no action needed'
-            message = "Your sleep is not affected by stress"
+            description = 'Stress is not affecting your sleep'
+            explanation = "All the indicators show that stress is not affecting your sleep. You are integrating well " \
+                          "in the new planet environment"
         elif sleep_level == 1:
             tag = 'warning'
-            description = 'maybe you could visit a psychologist'
-            message = "Your sleep is affected by stress"
+            description = 'Stress might be affecting your sleep'
+            explanation = "It might be possible that the new environment is causing stress which is affecting your " \
+                          "You should visit a psychologist but the situation seems under control"
         elif sleep_level == 2:
             tag = 'hard warning'
-            description = 'you have to visit a psychologist'
-            message = 'your sleep is not good at all'
+            description = 'Stress is affecting your sleep'
+            explanation = 'The new environment is causing you a lot of stress. Visit your Mars psychologist to deal ' \
+                          'with it'
         elif sleep_level == 3:
-            tag = 'WARNING'
-            description = 'you must visit a psychologist and stop the mission'
-            message = 'you haven''t slept for the last 3 weeks'
+            tag = 'DANGER WARNING'
+            description = 'Stress is heavily affecting your sleep'
+            explanation = 'All the indicators show that you are absolutely stressed and are not integrating in the new ' \
+                          'environment. Stop the mission and visit a Mars psychiatrist'
 
         notification = Notification(key=1, name="Sleep Check", date=date.today().strftime("%d/%m/%Y"),
-                                    description=description, explanation=message, tags=[tag])
+                                    description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["sleep"] = True
         self.notifications.append(notification)
@@ -149,19 +160,21 @@ class MasterClass:
 
         description = None
         tag = None
-        message = None
+        explanation = None
 
         if water_level == 0:
             tag = 'good'
-            description = 'no action needed'
-            message = "the quality of water is absolutely good"
+            description = 'The water is potable'
+            explanation = "You can drink the purified Mars water, without any problem. No sign of pollution has been " \
+                          "detected"
         elif water_level == 1:
             tag = 'warning'
-            description = 'there has to be a problem with water quality'
-            message = "pay attention to water quality. Pollution on Mars often happens"
+            description = 'Water is not potable'
+            explanation = "There is evidence that water is not potable. You will have to drink from the water " \
+                          "supplies until the problem will be solved"
 
         notification = Notification(key=1, name="Water Check", date=date.today().strftime("%d/%m/%Y"),
-                                    description=description, explanation=message, tags=[tag])
+                                    description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["habitat"]["water"] = True
         self.notifications.append(notification)

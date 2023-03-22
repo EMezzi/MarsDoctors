@@ -66,11 +66,11 @@ class HabitatModel:
         heuristic = self.__heuristic(habitat_data)
 
         if (prediction == 1 or prediction == 2 or prediction == 3) and heuristic == 1:
-            return [2, "Hard stress provoked by the habitat"]
+            return [2, "Mars habitat is making you very stressed"]
         elif (prediction == 1 or prediction == 2 or prediction == 3) or heuristic == 1:
-            return [1, "Mild stress, pay attention"]
+            return [1, "Mars habitat might be responsible for your stress level"]
         else:
-            return [0, "You are not stressed"]
+            return [0, "You are not stressed. Mars is like Earth for you"]
 
     def get_accuracy_metrics(self):
         pass

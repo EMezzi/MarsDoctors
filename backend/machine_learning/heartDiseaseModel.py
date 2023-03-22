@@ -51,8 +51,8 @@ class HeartDisease:
         heuristic = self.__heuristic(heart_data)
 
         if prediction == 1 and heuristic == 1:
-            return [2, "Your heart is in danger"]
+            return [2, "You are about to have an heart attack"]
         elif prediction == 1 or heuristic == 1:
-            return [1, "Your heart might be in danger"]
+            return [1, "You might be at risk of having an heart attack"]
         else:
             return [0, "Your heart is in good shape"]

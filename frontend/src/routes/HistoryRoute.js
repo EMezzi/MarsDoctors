@@ -32,7 +32,7 @@ const columns = [
                     if (tag === 'warning') {
                         color = 'yellow';
                     }
-                    if (tag === 'bad') {
+                    if (tag === 'hard warning') {
                         color = 'red';
                     }
                     return (
@@ -47,9 +47,9 @@ const columns = [
     {
         title: 'Action',
         key: 'action',
-        render: (_, record) => (
+        render: (_, record, index) => (
             <Space size="middle">
-                <a>Delete</a>
+                <a onClick={() => console.log(index)}>Delete</a>
             </Space>
 
         ),
@@ -83,6 +83,7 @@ class HistoryRoute extends Component {
             try {
                 const data_notifications = await axios.get(backEndUrl_threshold);
                 this.setState({data: data_notifications.data})
+                console.log(data_notifications.data)
             } catch (err) {
                 // Handle Error Here
                 console.error(err);
@@ -126,7 +127,7 @@ class HistoryRoute extends Component {
                         </p>
                     ),
                     rowExpandable: (record) => record.explanation !== 'Not Expandable',
-                }} dataSource={this.state.data} />
+                }} dataSource={this.state.data} rowKey={(row) => row.key}/>
             </div>
 
 

@@ -17,6 +17,8 @@ class DashboardMars extends Component {
 
     }
 
+
+
     componentDidMount() {
         // function to show the notification
         const showNotification = () => {

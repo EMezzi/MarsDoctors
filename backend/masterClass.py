@@ -27,12 +27,18 @@ class MasterClass:
         self.radiation = RadiationExpositionModel()
         self.sleep = SleepStressModel()
         self.water = WaterPotabilityModel()
-        notification1 = Notification(key=1, name="Health check ❤", date="10-01-2045", description="No action needed.",
-                                     explanation="Longer explanation Longer explanationLonger", tags=['good'])
-        notification2 = Notification(key=2, name="Habitat check 🏠", date="11-01-2045", description="No action needed.",
-                                     explanation="", tags=["good"])
-        notification3 = Notification(key=3, name="Health check ❤", date="12-01-2045", description="No action needed.",
-                                     explanation="Detected increasing stress level!", tags=['warning'])
+        notification1 = Notification(key=0, name="Stress check❤", date="10-01-2045", description="Check for details!",
+                                     explanation="Mars habitat might be responsible for your raised stress level. You "
+                                                 "should visit a doctor or a psychologist. For now no need to "
+                                                 "stop the mission.", tags=['warning'])
+        notification2 = Notification(key=1, name="Water check 🏠", date="11-01-2045", description="No action needed.",
+                                     explanation="You can drink the purified Mars water, without any problem. No sign "
+                                                 "of pollution has been detected.", tags=["good"])
+        notification3 = Notification(key=2, name="Radiation Check ❤", date="12-01-2045", description="Abnormal "
+                                                                                                     "activity "
+                                                                                                     "detected!",
+                                     explanation="Radiations levels have been increasing, take caution!",
+                                     tags=['warning'])
         self.notifications.append(notification1)
         self.notifications.append(notification2)
         self.notifications.append(notification3)
@@ -56,7 +62,7 @@ class MasterClass:
             explanation = 'The system has noticed that your stress level is very high, due to the new planet' \
                           'environment. You have to check yourself, you are not in condition to work.'
 
-        notification = Notification(key=len(self.notifications) - 1, name="Habitat Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications), name="Habitat Check 🏠", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["habitat"]["stress"] = True
@@ -82,7 +88,7 @@ class MasterClass:
             explanation = 'You are about to have an heart attack. The doctors will come as soon as possible. Stay ' \
                           'calm and breath deeply, otherwise you''ll only worsen the situation'
 
-        notification = Notification(key=len(self.notifications) - 1, name="Heart Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications), name="Heart Check ❤", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["heart"] = True
@@ -106,7 +112,7 @@ class MasterClass:
             explanation = 'Your genes show a change in their transcription level which is above 1%. You have to ' \
                           'immediately visit a biotechnologist to act with CRISPR'
 
-        notification = Notification(key=len(self.notifications) - 1, name="Radiations Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications), name="Radiations Check ❤", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["radiation"] = True
@@ -146,7 +152,7 @@ class MasterClass:
             explanation = 'All the indicators show that you are absolutely stressed and are not integrating in the new ' \
                           'environment. Stop the mission and visit a Mars psychiatrist'
 
-        notification = Notification(key=len(self.notifications) - 1, name="Sleep Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications), name="Sleep Check ❤", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["sleep"] = True
@@ -173,7 +179,7 @@ class MasterClass:
             explanation = "There is evidence that water is not potable. You will have to drink from the water " \
                           "supplies until the problem will be solved"
 
-        notification = Notification(key=len(self.notifications) - 1, name="Water Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications), name="Water Check 🏠", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["habitat"]["water"] = True

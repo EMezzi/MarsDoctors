@@ -116,20 +116,21 @@ def send_cycle_complete():
     if health_cycle and habitat_cycle:
         masterObject.set_health_to_false()
         masterObject.set_habitat_to_false()
-        return "Both check cycles are finished. Go to see the results for habitat and health."
+        return {"status": "Both check cycles are finished. Go to see the results for habitat and health.",
+                "type": "Health and habitat"}
 
     elif health_cycle:
         masterObject.set_health_to_false()
-        return "Check cycle is over for the health. Go to see the results."
+        return {"status": "Check cycle is over for the health. Go to see the results.", "type": "Health"}
 
     elif habitat_cycle:
         masterObject.set_habitat_to_false()
-        return "Check cycle is over for the habitat. Go to see the results."
+        return {"status": "Check cycle is over for the habitat. Go to see the results.", "type": "Habitat"}
 
     else:
-        return "No cycle is ready, there is nothing new to see."
+        return {"status": "No cycle is ready, there is nothing new to see."}
 
 
 @app.get("/notifications")
 def send_notifications():
-    return masterObject.notifications
+    return masterObject.notifications[::-1]

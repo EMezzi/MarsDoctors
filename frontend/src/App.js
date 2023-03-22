@@ -2,13 +2,14 @@ import './css/App.css';
 import SideBar from './components/menus/SiderMenu';
 import React from 'react';
 import {BrowserRouter, Route, Switch, Redirect,} from "react-router-dom"
-import {FloatButton, Layout} from 'antd';
+import {FloatButton, Layout, notification} from 'antd';
 import HeaderDashboard from "./components/headers/HeaderDashboard";
 import HeaderPredict from "./components/headers/HeaderPredict";
 import HistoryRoute from "./routes/HistoryRoute";
 import DashboardMars from "./routes/DashboardMars";
 import SensorRoute from "./routes/SensorRoute";
 import HeaderSensor from "./components/headers/HeaderSensor";
+import axios from "axios";
 
 /**
  * @author Matei
@@ -25,6 +26,33 @@ const {Content, Footer} = Layout;
 //to do is just load a new component and not change any more code in here
 class App extends React.Component {
 
+  async checkBackendCycles() {
+    try {
+      const data_notifications = await axios.get("http://127.0.0.1:8000/cycle_complete/");
+      if (data_notifications.data.status !== "No cycle is ready, there is nothing new to see.") {
+        notification.info({
+          message: data_notifications.data.type +  ' check complete!',
+          description:
+          data_notifications.data.status,
+          duration: 0,
+        });
+      }
+      // this.setState({data: data_notifications.data})
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    } finally {
+      console.log("Checked for cycle complete")
+    }
+  }
+
+  componentDidMount() {
+    // Make the initial API call
+    this.checkBackendCycles();
+
+    // Set an interval to make the API call every 10 seconds
+    setInterval(this.checkBackendCycles, 10000);
+  }
 
   render() {
 

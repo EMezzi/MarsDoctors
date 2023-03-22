@@ -56,7 +56,7 @@ class MasterClass:
             explanation = 'The system has noticed that your stress level is very high, due to the new planet' \
                           'environment. You have to check yourself, you are not in condition to work.'
 
-        notification = Notification(key=1, name="Habitat Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications) - 1, name="Habitat Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["habitat"]["stress"] = True
@@ -82,7 +82,7 @@ class MasterClass:
             explanation = 'You are about to have an heart attack. The doctors will come as soon as possible. Stay ' \
                           'calm and breath deeply, otherwise you''ll only worsen the situation'
 
-        notification = Notification(key=1, name="Heart Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications) - 1, name="Heart Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["heart"] = True
@@ -106,7 +106,7 @@ class MasterClass:
             explanation = 'Your genes show a change in their transcription level which is above 1%. You have to ' \
                           'immediately visit a biotechnologist to act with CRISPR'
 
-        notification = Notification(key=1, name="Radiations Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications) - 1, name="Radiations Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["radiation"] = True
@@ -146,7 +146,7 @@ class MasterClass:
             explanation = 'All the indicators show that you are absolutely stressed and are not integrating in the new ' \
                           'environment. Stop the mission and visit a Mars psychiatrist'
 
-        notification = Notification(key=1, name="Sleep Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications) - 1, name="Sleep Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["health"]["sleep"] = True
@@ -173,7 +173,7 @@ class MasterClass:
             explanation = "There is evidence that water is not potable. You will have to drink from the water " \
                           "supplies until the problem will be solved"
 
-        notification = Notification(key=1, name="Water Check", date=date.today().strftime("%d/%m/%Y"),
+        notification = Notification(key=len(self.notifications) - 1, name="Water Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=explanation, tags=[tag])
 
         self.check_notifications["habitat"]["water"] = True

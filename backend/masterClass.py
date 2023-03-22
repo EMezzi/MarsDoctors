@@ -18,8 +18,8 @@ class MasterClass:
     sleep = None
     water = None
     notifications = []
-    check_notifications = {"health": {"heart": [-1, None], "radiation": [-1, None], "sleep": [-1, None]},
-                           "habitat": {"stress": [-1, None], "water": [-1, None]}}
+    check_notifications = {"health": {"heart": False, "radiation": False, "sleep": False},
+                           "habitat": {"stress": False, "water": False}}
 
     def __init__(self):
         self.habitat = HabitatModel()
@@ -55,10 +55,9 @@ class MasterClass:
 
         notification = Notification(key=1, name="Habitat Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=message, tags=[tag])
-        self.notifications.append(notification)
 
-        self.check_notifications["habitat"]["stress"][0] = 1
-        self.check_notifications["habitat"]["stress"][1] = notification
+        self.check_notifications["habitat"]["stress"] = True
+        self.notifications.append(notification)
 
         return stress_level  # self.habitat.decide(habitat_data)
 
@@ -80,10 +79,9 @@ class MasterClass:
 
         notification = Notification(key=1, name="Heart Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=message, tags=[tag])
-        self.notifications.append(notification)
 
-        self.check_notifications["health"]["heart"][0] = 1
-        self.check_notifications["health"]["heart"][1] = notification
+        self.check_notifications["health"]["heart"] = True
+        self.notifications.append(notification)
 
         return heart_level
 
@@ -103,10 +101,9 @@ class MasterClass:
 
         notification = Notification(key=1, name="Radiations Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=message, tags=[tag])
-        self.notifications.append(notification)
 
-        self.check_notifications["health"]["radiation"][0] = 1
-        self.check_notifications["health"]["radiation"][1] = notification
+        self.check_notifications["health"]["radiation"] = True
+        self.notifications.append(notification)
 
         return radiation_level
 
@@ -131,7 +128,7 @@ class MasterClass:
             message = "Your sleep is affected by stress"
         elif sleep_level == 2:
             tag = 'hard warning'
-            description = 'you have to visiti a psychologyst'
+            description = 'you have to visit a psychologist'
             message = 'your sleep is not good at all'
         elif sleep_level == 3:
             tag = 'WARNING'
@@ -141,9 +138,8 @@ class MasterClass:
         notification = Notification(key=1, name="Sleep Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=message, tags=[tag])
 
+        self.check_notifications["health"]["sleep"] = True
         self.notifications.append(notification)
-        self.check_notifications["health"]["sleep"][0] = 1
-        self.check_notifications["health"]["sleep"][1] = notification
 
         return prediction
 
@@ -167,8 +163,15 @@ class MasterClass:
         notification = Notification(key=1, name="Water Check", date=date.today().strftime("%d/%m/%Y"),
                                     description=description, explanation=message, tags=[tag])
 
+        self.check_notifications["habitat"]["water"] = True
         self.notifications.append(notification)
-        self.check_notifications["habitat"]["water"][0] = 1
-        self.check_notifications["habitat"]["water"][1] = notification
 
         return prediction
+
+    def set_habitat_to_false(self):
+        for key in self.check_notifications["habitat"].keys():
+            self.check_notifications["habitat"][key] = False
+
+    def set_health_to_false(self):
+        for key in self.check_notifications["health"].keys():
+            self.check_notifications["health"][key] = False

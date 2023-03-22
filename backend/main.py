@@ -89,8 +89,6 @@ def predict_general_stress(habitat_data: HabitatData):
     data = pd.DataFrame([habitat_data.dict()])
     output = masterObject.habitat_decide(data)
 
-    print("Questo è il risultato: ", output)
-
     return {'input data': habitat_data, 'output': output}
 
 
@@ -102,7 +100,36 @@ def predict_heart_stress(heart_data: HeartData):
     return {'input data': heart_data, 'output': output}
 
 
-@app.get("/notifications")
-def predict_heart_stress():
+@app.get("/cycle_complete")
+def send_cycle_complete():
+    health_notifications = masterObject.check_notifications["health"]
+    habitat_notifications = masterObject.check_notifications["habitat"]
 
+    health_cycle = False
+    if all(value for value in health_notifications.values()):
+        health_cycle = True
+
+    habitat_cycle = False
+    if all(value for value in habitat_notifications.values()):
+        habitat_cycle = True
+
+    if health_cycle and habitat_cycle:
+        masterObject.set_health_to_false()
+        masterObject.set_habitat_to_false()
+        return "Both check cycles are finished. Go to see the results for habitat and health."
+
+    elif health_cycle:
+        masterObject.set_health_to_false()
+        return "Check cycle is over for the health. Go to see the results."
+
+    elif habitat_cycle:
+        masterObject.set_habitat_to_false()
+        return "Check cycle is over for the habitat. Go to see the results."
+
+    else:
+        return "No cycle is ready, there is nothing new to see."
+
+
+@app.get("/notifications")
+def send_notifications():
     return masterObject.notifications

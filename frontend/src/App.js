@@ -1,8 +1,8 @@
 import './css/App.css';
 import SideBar from './components/menus/SiderMenu';
 import React from 'react';
-import {BrowserRouter, Route, Switch, Redirect,} from "react-router-dom"
-import {FloatButton, Layout, notification} from 'antd';
+import {BrowserRouter, Route, Switch, Redirect, Link,} from "react-router-dom"
+import {Button, FloatButton, Layout, notification, Space} from 'antd';
 import HeaderDashboard from "./components/headers/HeaderDashboard";
 import HeaderPredict from "./components/headers/HeaderPredict";
 import HistoryRoute from "./routes/HistoryRoute";
@@ -10,6 +10,7 @@ import DashboardMars from "./routes/DashboardMars";
 import SensorRoute from "./routes/SensorRoute";
 import HeaderSensor from "./components/headers/HeaderSensor";
 import axios from "axios";
+import {Router} from "react-router";
 
 /**
  * @author Matei
@@ -51,7 +52,7 @@ class App extends React.Component {
     this.checkBackendCycles();
 
     // Set an interval to make the API call every 10 seconds
-    setInterval(this.checkBackendCycles, 10000);
+    setInterval(this.checkBackendCycles, 3000);
   }
 
   render() {

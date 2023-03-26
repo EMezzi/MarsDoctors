@@ -1,18 +1,26 @@
 import React from "react";
 import {Card} from "antd";
 import axios from "axios";
-import { Bullet } from '@ant-design/plots';
+import {Bullet, Liquid} from '@ant-design/plots';
 
-
+const data = [
+    {
+        title: 'Recoded ration levels',
+        ranges: [10, 30, 100],
+        measures: [7],
+        target: 3,
+    },
+];
 
 const config = {
+    data:data,
     measureField: 'measures',
     height: 100,
     rangeField: 'ranges',
     targetField: 'target',
     xField: 'title',
     color: {
-        range: ['#FFbcb8', '#FFe0b0', '#bfeec8'],
+        range: ['#bfeec8', '#FFe0b0', '#FFbcb8'],
         measure: '#5B8FF9',
         target: '#39a3f4',
     },
@@ -30,7 +38,7 @@ const config = {
         items: [
             {
                 value: 'Low',
-                name: 'Low recall',
+                name: 'High Radiation',
                 marker: {
                     symbol: 'square',
                     style: {
@@ -41,7 +49,7 @@ const config = {
             },
             {
                 value: 'Medium',
-                name: 'Medium recall',
+                name: 'Radiation detected',
                 marker: {
                     symbol: 'square',
                     style: {
@@ -52,7 +60,7 @@ const config = {
             },
             {
                 value: 'High',
-                name: 'High recall',
+                name: 'Low radiation',
                 marker: {
                     symbol: 'square',
                     style: {
@@ -63,7 +71,7 @@ const config = {
             },
             {
                 value: 'Current',
-                name: 'Current recall',
+                name: 'Current level',
                 marker: {
                     symbol: 'square',
                     style: {
@@ -74,7 +82,7 @@ const config = {
             },
             {
                 value: 'Optimal',
-                name: 'Optimal recall',
+                name: 'Maximum allowed level',
                 marker: {
                     symbol: 'line',
                     style: {
@@ -99,46 +107,26 @@ class BulletCard extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            loading: true,
-        }
-        this.data = [
-            {
-                title: 'Blocked fraud',
-                ranges: [30, 70, 100],
-                measures: [parseInt(this.props.true_recall.recall * 100)],
-                target: 100,
-            },
-        ];
-
     }
 
 
     componentDidMount() {
-        //this.loadData()
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.true_recall !== this.props.true_recall) {
-            console.log("updated")
-            this.data = [
-                {
-                    title: 'Blocked fraud',
-                    ranges: [30, 70, 100],
-                    measures: [parseInt(this.props.true_recall.recall * 100)],
-                    target: 100,
-                },
-            ];
-            this.render()
-        }
+
     }
 
     render() {
 
         return(
+            <Card  className='featuresCard' hoverable title="Radiation status" bordered={false} >
 
-            // <Bullet {this.data, ...config} />
-            <Bullet data={this.data} {...config}/>
+                <Bullet {...config}/>
+
+            </Card>
+
         )
 
     }

@@ -1,10 +1,14 @@
 
 .App-logo {
-  width: 120px;
-  height: 40px;
-  margin-bottom: 10px;;
-  margin-left: 40px;
-  margin-top: 10px;
+  width: 125px;
+  height: 125px;
+  margin-bottom: -10px;;
+  margin-left: 35px;
+  margin-top: -10px;
+}
+
+.App-logo-small {
+  display: none;
 }
 
 @keyframes slideInFromLeft {
@@ -22,10 +26,16 @@
 
 @media (max-width: 991px) {
   .App-logo {
+    display: none;
+  }
+  .App-logo-small {
     width: 40px;
-    height: 25px;
+    height: 40px;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display: block;
+
   }
 }
 

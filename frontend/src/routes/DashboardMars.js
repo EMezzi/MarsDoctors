@@ -5,6 +5,8 @@ import {Card, Col, Row,notification} from "antd";
 import {Content} from "antd/es/layout/layout";
 import {CloudFilled, DashboardOutlined, DislikeOutlined, LikeOutlined} from "@ant-design/icons";
 import MarsLineChart from "../components/dashboard/marsLineChart";
+import StressCard from "../components/dashboard/stressCard";
+import BulletCard from "../components/dashboard/bulletCard";
 
 
 class DashboardMars extends Component {
@@ -44,9 +46,6 @@ class DashboardMars extends Component {
             });
         };
 
-        // call the showNotification function after 10 seconds
-        //setTimeout(showNotification, 2000); // 2000 milliseconds = 2 seconds
-        //etTimeout(showNotification2, 6000); // 3000 milliseconds = 3 seconds
     }
 
 
@@ -75,7 +74,7 @@ class DashboardMars extends Component {
 
                                     <div className="smallCardContent">
                                     <span>
-                                        21 Hours Ago
+                                        1 Hour Ago
                                     </span>
                                     </div>
                                 </div>
@@ -159,18 +158,28 @@ class DashboardMars extends Component {
                 </Row>
 
                 <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
+
+                    <Col className="dashboardCard" flex="auto">
+                        <BulletCard/>
+                    </Col>
+
+
+                </Row>
+
+                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
                     <Col className="dashboardCard" flex="auto">
                         <MarsLineChart/>
                     </Col>
 
                 </Row>
 
-                {/*<Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>*/}
-                {/*    <Col className="dashboardCard" flex="auto">*/}
-                {/*        <MarsLineChart/>*/}
-                {/*    </Col>*/}
 
-                {/*</Row>*/}
+                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
+                    <Col className="dashboardCard" flex="auto">
+                        <StressCard/>
+                    </Col>
+
+                </Row>
 
 
             </Content>

@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from "../../resources/logo.png";
+import logo3 from "../../resources/logo3.png";
 import {Layout, Menu} from "antd";
 import {CreditCardOutlined, DashboardOutlined, WifiOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
@@ -49,6 +50,7 @@ class SiderMenu extends React.Component {
                     {/*Company logo and name*/}
                     <Link to="/dashboard">
                         <img className="App-logo" alt={"Agyen logo"} src={logo}/>
+                        <img className="App-logo-small" alt={"Agyen logo"} src={logo3}/>
                     </Link>
                 </div>
 
